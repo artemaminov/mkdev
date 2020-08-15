@@ -6,8 +6,8 @@
   <div class="col-4">
     <div class="list-group" role="tablist">
       <a class="list-group-item list-group-item-action active d-flex justify-content-between align-items-center" id="list-posts-list" data-toggle="list" href="#list-post" role="tab" aria-controls="post">Posts<span class="badge badge-primary badge-pill"><%= @posts.count %></span></a>
-      <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-stories-list" data-toggle="list" href="#list-story" role="tab" aria-controls="story">Stories<span class="badge badge-primary badge-pill"><%= @posts.count %></span></a>
-      <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-images-list" data-toggle="list" href="#list-image" role="tab" aria-controls="image">Images<span class="badge badge-primary badge-pill"><%= @posts.count %></span></a>
+      <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-stories-list" data-toggle="list" href="#list-story" role="tab" aria-controls="story">Stories<span class="badge badge-primary badge-pill"><%= @stories.count %></span></a>
+      <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-images-list" data-toggle="list" href="#list-image" role="tab" aria-controls="image">Images<span class="badge badge-primary badge-pill"><%= @images.count %></span></a>
     </div>
   </div>
 
@@ -15,48 +15,46 @@
     <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active" id="list-post" role="tabpanel" aria-labelledby="list-posts-list">
         <%= link_to 'New Post', new_post_path %>
-        <div class="list-group">
+        <div class="list-group list-group-horizontal">
           <% @posts.each do |post| %>
-            <a href="#" class="list-group-item list-group-item-action active">
+            <%= link_to post, class: 'col-10 list-group-item list-group-item-action active' do %>
               <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1"><%= link_to post.title, post %></h5>
-                <small>3 days ago</small>
+                <h5 class="mb-1"><%= post.title %></h5>
+                <small><%= post.created_at %></small>
               </div>
-              <div>
-                <%= link_to 'Edit', edit_post_path(post) %>
-                <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
-              </div>
-            </a>
+            <% end %>
+            <%= link_to 'Edit', edit_post_path(post), class: 'list-group-item list-group-item-action list-group-item-primary' %>
+            <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'list-group-item list-group-item-action list-group-item-danger' %>
           <% end %>
         </div>
       </div>
       <div class="tab-pane fade" id="list-story" role="tabpanel" aria-labelledby="list-stories-list">
         <%= link_to 'New Story', new_story_path %>
-        <div class="list-group">
+        <div class="list-group list-group-horizontal">
           <% @stories.each_with_index do |story, i| %>
-            <a href="#" class="list-group-item list-group-item-action active">
+            <%= link_to story, class: 'col-10 list-group-item list-group-item-action active' do %>
               <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1"><%= link_to "Story #{i}", story %></h5>
-                <small>3 days ago</small>
+                <h5 class="mb-1"><%= "Story #{i+1}" %></h5>
+                <small><%= story.created_at %></small>
               </div>
-              <%= link_to 'Edit', edit_story_path(story) %>
-              <%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %>
-            </a>
+            <% end %>
+            <%= link_to 'Edit', edit_story_path(story), class: 'list-group-item list-group-item-action list-group-item-primary' %>
+            <%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' }, class: 'list-group-item list-group-item-action list-group-item-danger' %>
           <% end %>
         </div>
       </div>
       <div class="tab-pane fade" id="list-image" role="tabpanel" aria-labelledby="list-images-list">
         <%= link_to 'New Image', new_image_path %>
-        <div class="list-group">
-          <% @images.each do |image| %>
-            <a href="#" class="list-group-item list-group-item-action active">
+        <div class="list-group list-group-horizontal">
+          <% @images.each_with_index do |image, i| %>
+            <%= link_to image, class: 'col-10 list-group-item list-group-item-action active' do %>
               <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1"><%= link_to image.title, image %></h5>
-                <small>3 days ago</small>
+                <h5 class="mb-1"><%= "Image #{i+1}" %></h5>
+                <small><%= image.created_at %></small>
               </div>
-              <%= link_to 'Edit', edit_image_path(image) %>
-              <%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %>
-            </a>
+            <% end %>
+            <%= link_to 'Edit', edit_image_path(image), class: 'list-group-item list-group-item-action list-group-item-primary' %>
+            <%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' }, class: 'list-group-item list-group-item-action list-group-item-danger' %>
           <% end %>
         </div>
       </div>
