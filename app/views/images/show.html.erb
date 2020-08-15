@@ -1,0 +1,7 @@
+<%= link_to 'Home', root_url %>
+<p id="notice"><%= notice %></p>
+
+<%= image_tag url_for(@image.file) %>
+
+<%= link_to 'Edit', edit_image_path(@image) %> |
+<%= link_to 'Back', images_path %>
