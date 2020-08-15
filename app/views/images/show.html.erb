@@ -1,6 +1,8 @@
 <%= link_to 'Home', root_url %>
 <p id="notice"><%= notice %></p>
 
-<%= image_tag url_for(@image.file) %>
+<div class="clo-12">
+  <%= image_tag url_for(@image.file), id: 'image-to-crop', class: 'w-100' %>
+</div>
 
 <%= link_to 'Edit', edit_image_path(@image) %>
