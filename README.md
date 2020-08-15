@@ -1,24 +1,7 @@
-# README
+If app crashes with error
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+    dyld: Symbol not found: _ffi_prep_closure_loc 
 
-Things you may want to cover:
+fix with command
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+    gem inst ffi -- --disable-system-libffi
